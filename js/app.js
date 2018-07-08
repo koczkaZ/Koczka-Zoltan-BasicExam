@@ -127,6 +127,30 @@ function getPicOfLongestShip (array){
   }return longestShip["image"]
 } 
 
+function search (input, array){
+  array = ascendingOrderByName(array)
+    input = input.toLowerCase();
+  for (var i = 0; i < array.length; i++) {
+    if (array[i]["model"].toLowerCase().indexOf(input) > -1) {
+      console.log(array[i]["model"]);return
+    }
+     }console.log("Ez a részlet nem található egyik modelnévben sem")
+}
+
+function ascendingOrderByName(input) {
+  var i; var j; var end;
+  end = input.length;
+  while (end--) {
+    for (i = 0, j = 1; i < end; i++ , j++) {
+        if (input[i]["model"].localeCompare(input[j]["model"]) > 0 ){
+          temp = input[i];
+          input[i] = input[j];
+          input[j] = temp;
+        }
+    }
+} return input;
+}
+
 /*
 /// Builds the HTML Table out of myList json data from Ivy restful service.
 function buildHtmlTable() {
@@ -191,6 +215,8 @@ function getData(url, callbackFunc) {
     getMaxCargoCapacityShip(userDatas)
     getTotalPassengers(userDatas)
     getPicOfLongestShip(userDatas)
+    search("class", userDatas)
+    
   }
   getData('/json/spaceships.json', successAjax);
-  
+   
