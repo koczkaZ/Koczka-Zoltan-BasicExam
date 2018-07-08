@@ -1,5 +1,5 @@
 // ide deklaráljátok a függvényeket.
-/*
+/* Ez valamiért nem működik...:
 function ascendingOrderByCost2(data) {
   var i;
   var sorted = false;
@@ -21,6 +21,7 @@ function ascendingOrderByCost2(data) {
 }
 */
 
+// Ár szerint növekvő sorrendbe rendez
 function ascendingOrderByCost(input) {
   var i; var j; var end;
   end = input.length;
@@ -35,6 +36,7 @@ function ascendingOrderByCost(input) {
   } return input;
 }
 
+// Így bírkózik meg a többi függvény a null-lal és az unknown-nal
 function getInteger(value) {
   if (value !== null && value !== 'unknown') {
     return parseInt(value, 10);
@@ -42,15 +44,16 @@ function getInteger(value) {
   return 0;
 }
 
+// A null-os objektumokot indexét összeszedi egy tömbbe
 function nullConsumableFinder(input) {
-  var data = input.slice();
   let arrayOfIndexes = [];
-  for (var k in data) {
-    if (data[k].consumables === null) { arrayOfIndexes.push(k); }
+  for (var k in input) {
+    if (input[k].consumables === null) { arrayOfIndexes.push(k); }
   }
   return arrayOfIndexes;
 }
 
+// Megadott indexek (arrayOfIndexes) alapját kivagdos elemeket egy tömbből.
 function precisionDeleter(arrayOfIndexes, array) {
   for (var i = arrayOfIndexes.length - 1; i >= 0; i--) {
     array.splice(arrayOfIndexes[i], 1);
@@ -58,6 +61,7 @@ function precisionDeleter(arrayOfIndexes, array) {
   return array;
 }
 
+// A nullokat unknown-ra állítja.
 function setNulltoUnknown(array) {
   for (var i = 0; i < array.length; i++) {
     for (var k in array[i]) {
@@ -69,6 +73,7 @@ function setNulltoUnknown(array) {
   return array;
 }
 
+// Stringbe írja egy objektumokból álló tömb adatait.
 function objectWriter(arrayOfobjects) {
   var output = '';
   for (var i = 0; i < arrayOfobjects.length; i++) {
@@ -80,6 +85,7 @@ function objectWriter(arrayOfobjects) {
   } return output;
 }
 
+// Stringbe írja egy objektumokból álló tömb adatát.
 function soloObjectWriter(object) {
   var output = '<b>A keresés eredménye:</b> <br><br>';
   for (var k in object) {
@@ -89,7 +95,7 @@ function soloObjectWriter(object) {
   } return output;
 }
 
-
+// Kitölti a kapott stringgel az area id-jű divet.
 function divFiller(string) {
   document.getElementById('area').innerHTML += string;
 }
@@ -143,6 +149,7 @@ function getPicOfLongestShip(array) {
   } return ('A leghosszabb hajó képének a neve: ' + longestShip.image);
 }
 
+// Keresés (nem case sensitive). Első találatig megy az előzetesen modelnév szerint rendezett tömbben.
 function search(inputString, inputArr) {
   var array = ascendingOrderByName(inputArr);
   var input = inputString.toLowerCase();
@@ -153,6 +160,7 @@ function search(inputString, inputArr) {
   } return alert('Ez a részlet nem található egyik modelnévben sem');
 }
 
+// Modelnévszerinti ABC-sorba rendezés.
 function ascendingOrderByName(input) {
   var i; var j; var end;
   end = input.length;
