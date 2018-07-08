@@ -143,15 +143,14 @@ function getPicOfLongestShip(array) {
   } return ('A leghosszabb hajó képének a neve: ' + longestShip.image);
 }
 
-function search(input, array) {
-  array = ascendingOrderByName(array);
-  input = input.toLowerCase();
+function search(inputString, inputArr) {
+  var array = ascendingOrderByName(inputArr);
+  var input = inputString.toLowerCase();
   for (var i = 0; i < array.length; i++) {
     if (array[i].model.toLowerCase().indexOf(input) > -1) {
       return array[i];
-      // (`Első találat a "${input}" keresésre: ${array[i].model}`);
     }
-  } console.log('Ez a részlet nem található egyik modelnévben sem');
+  } return alert('Ez a részlet nem található egyik modelnévben sem');
 }
 
 function ascendingOrderByName(input) {
@@ -212,7 +211,7 @@ function addAllColumnHeaders(myList)
 function getData(url, callbackFunc) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
+    if (this.readyState === 4 && this.status === 200) {
       callbackFunc(this);
     }
   };
